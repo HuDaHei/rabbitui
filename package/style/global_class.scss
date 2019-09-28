@@ -1,0 +1,14 @@
+// 全局样式
+
+// 居中
+.unified-style{
+  box-sizing: content-box;
+  * {
+    box-sizing: content-box;
+  }
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
