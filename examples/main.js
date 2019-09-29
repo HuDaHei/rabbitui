@@ -6,6 +6,8 @@ requireComponent.keys().forEach(fileName => {
   Vue.component(componentConfig.default.name,componentConfig.default || componentConfig)
   
 });
+// import rabbits from 'rabbits-ui'
+// Vue.use(rabbits)
 Vue.config.productionTip = false
 
 new Vue({
