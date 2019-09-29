@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <r-input></r-input>
+  <r-input :values.sync="rData"></r-input>
   </div>
 </template>
 
@@ -8,6 +8,16 @@
 
 export default {
   name: 'app',
+  data() {
+    return {
+      rData: 'x'
+    }
+  },
+  methods: {
+    input(v) {
+      console.log(v, 'input')
+    }
+  },
 }
 </script>
 
