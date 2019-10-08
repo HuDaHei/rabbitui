@@ -1,23 +1,33 @@
 <template>
-  <input 
-    type="text" 
-    class="unified-style r-input"
-    @focus="focus"
-    @change="change"
-    @input='input'
-    @blur="blur"
-    @keydown="keydown"
-    @keyup="keyup"
-    @keypress="keypress"
-  >
+  <div class="unified-style r-input-container">
+    <input 
+      type="text" 
+      @focus="focus"
+      @change="change"
+      @input='input'
+      @blur="blur"
+      @keydown="keydown"
+      @keyup="keyup"
+      @keypress="keypress"
+    >
+  </div>
 </template>
 <script>
 export default {
   name: 'RInput',
   props: {
-    values: {
+    value: {
       type: String
-    }
+    },
+    // 事件传递的方式 可以是单个往外传递 也可以是全部传递
+    eventType: {
+      type: String,
+      default: 'single' // double
+    },
+  },
+  model: {
+    prop: 'value',
+    event: 'inputs'
   },
   methods: {
     focus(v) {
@@ -30,6 +40,7 @@ export default {
       this.emitEvent('change',v);
     },
     input(v) {
+      this.$emit('inputs',v.target.value)
       this.emitEvent('input',v);
     },
     keydown(v) {
@@ -41,29 +52,34 @@ export default {
     keypress(v) {
       this.emitEvent('keypress',v);
     },
-    async emitEvent(type,v) {
-      await this.$emit(type,v);
-      await this.$emit('primeval', {type,v});
-      if(type === 'input') {
-        this.$emit('update:values',v.target.value)
+    emitEvent(type,v) {
+      if(this.eventType.includes('single')) {
+        this.$emit(type,v)
+      }else {
+        this.$emit('primeval', {type,v})
       }
     }
   },
 }
 </script>
 <style lang="scss">
-  .r-input{
+  .r-input-container{
+    display: inline-block;
+    padding-left: rem(6);
+    min-width: rem(30);
+    height: rem(24);
     font-size:$fontSize;
     font-weight: normal;
     color: $fontColor;
-    line-height: $lineHeight;
     border: 1px solid $fontColor;
-    border-radius: $borderRaius;
-    padding-left:6px;
     transition: border-color .3s ease-in-out;
-    &:focus {
+    & > input {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
       outline: 0;
-      border-color:$bgColor;
+      background: blanchedalmond;
     }
   }
 </style>

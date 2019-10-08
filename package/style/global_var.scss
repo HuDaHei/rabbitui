@@ -4,3 +4,8 @@ $fontColor: #7d7777;
 $fontSize: 12px;
 $lineHeight: 2;
 $borderRaius: 4px;
+
+// 全局函数
+@function rem($px) {
+    @return $px / 41.4 + rem
+}

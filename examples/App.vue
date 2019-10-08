@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <r-input :values.sync="rData"></r-input>
+  <r-input v-model="rData" class="a-r-input"></r-input>
   </div>
 </template>
 
@@ -14,9 +14,6 @@ export default {
     }
   },
   methods: {
-    input(v) {
-      console.log(v, 'input')
-    }
   },
 }
 </script>
@@ -29,5 +26,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.a-r-input {
+  width: 180px;
 }
 </style>

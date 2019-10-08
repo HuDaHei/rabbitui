@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
+// import './rem'
+import 'amfe-flexible'
 const requireComponent = require.context('../package',true,/\.js$/);
 requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName);
